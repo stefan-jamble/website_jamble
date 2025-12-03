@@ -33,7 +33,14 @@ export default function SharedShow({ show, profile }: SharedShowProps) {
   const formattedDate = `${dayName}. ${month}/${day} • ${hours}:${minutes}`;
 
   return (
-    <div className="p-6 w-full flex flex-col justify-center items-stretch gap-y-6">
+    <div 
+      className="p-6 w-full flex flex-col justify-center items-stretch gap-y-6"
+      style={{
+        backgroundImage: 'url("/bg-pattern.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <div className="flex flex-row justify-between items-center gap-x-2">
         <Image src="/logo-jamble.png" alt="Jamble" height={48} width={48} />
         <p className="font-bold text-sm">Your friend invited you to join a show on Jamble!</p>
