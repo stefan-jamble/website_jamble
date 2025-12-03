@@ -21,7 +21,9 @@ const translations = {
         searchCountries: "Search countries...",
         noCountriesFound: "No countries found.",
         activating: "Activating...",
-        activateCredit: "Activate your Credit"
+        activateCredit: "Activate your Credit",
+        alreadyClaimedTitle: "You've already claimed this reward with this phone number.",
+        alreadyClaimedButton: "Open the app"
     },
     pt: {
         successTitle: "Parabéns! Baixe o aplicativo para reivindicar seus R$20.",
@@ -31,7 +33,9 @@ const translations = {
         searchCountries: "Pesquisar países...",
         noCountriesFound: "Nenhum país encontrado.",
         activating: "Ativando...",
-        activateCredit: "Ativar seu Crédito"
+        activateCredit: "Ativar seu Crédito",
+        alreadyClaimedTitle: "Você já resgatou essa recompensa com este número de telefone.",
+        alreadyClaimedButton: "Abrir o app"
     }
 };
 
@@ -156,6 +160,7 @@ export default function FriendInvite({
     const [phoneValue, setPhoneValue] = useState<RPNInput.Value>();
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [isAlreadyClaimed, setIsAlreadyClaimed] = useState(false);
 
     useEffect(() => {
         if (!countryCode) return;
@@ -195,6 +200,17 @@ export default function FriendInvite({
                 }),
             });
             const data = await res.json();
+
+            // if (res.status === 409 && data?.error_code === "PROFILE_REFERRAL_INTENT_ALREADY_EXISTS") {
+            //     setIsAlreadyClaimed(true);
+            //     return;
+            // }
+
+            if (res.status !== 200) {
+                setIsAlreadyClaimed(true);
+                return;
+            }
+
             if (!data.success) throw new Error(data.message);
             setIsSuccess(true);
         } catch (err) {
@@ -208,7 +224,17 @@ export default function FriendInvite({
     return (
         <div className="w-full h-[80vh] p-6 bg-white flex flex-col justify-center items-center gap-y-6">
             <Image src="/logo-jamble.png" alt="Jamble" height={96} width={96} />
-            {isSuccess ? (
+            {isAlreadyClaimed ? (
+                <>
+                    <p className="text-3xl font-bold text-center">{t.alreadyClaimedTitle}</p>
+                    <Button
+                        onClick={() => console.log("Already claimed button clicked")}
+                        className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white"
+                    >
+                        {t.alreadyClaimedButton}
+                    </Button>
+                </>
+            ) : isSuccess ? (
                 <>
                     <p className="text-3xl font-bold text-center">{t.successTitle}</p>
                     <Button onClick={() => console.log("Success button clicked")} className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white">
