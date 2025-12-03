@@ -1,6 +1,11 @@
 import SmartBanner from "@/components/SmartAppBanner";
+import { getCountryCode } from "@/lib/location";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const countryCode = await getCountryCode();
+  const iframeSrc =
+    countryCode === "BR" ? "/homepage-br.html" : "/homepage.html";
+
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <SmartBanner
@@ -9,9 +14,9 @@ export default function HomePage() {
         playStoreUrl="https://play.google.com/store/apps/details?id=com.example.app"
         delay={500}
       />
-      
+
       <iframe
-        src="/homepage.html"
+        src={iframeSrc}
         style={{ width: "100%", height: "100%", border: "none" }}
       />
     </div>
