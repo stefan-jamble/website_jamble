@@ -138,7 +138,13 @@ const CountrySelectDrawer = ({
 };
   
 
-export default function FriendInvite({ countryCode }: { countryCode: string }) {
+export default function FriendInvite({
+    countryCode,
+    referrerId,
+}: {
+    countryCode: string;
+    referrerId?: string;
+}) {
     const countryList = getCountries();
     const normalized = (countryCode ||  "").toUpperCase();
     const isValid = countryList.includes(normalized as any) && normalized.length === 2;
@@ -173,10 +179,30 @@ export default function FriendInvite({ countryCode }: { countryCode: string }) {
       });
   
     async function handleActivateCredit() {
+        if (!phoneValue) return;
         setIsLoading(true);
-        await new Promise((r) => setTimeout(r, 500));
-        setIsSuccess(true);
-        setIsLoading(false);
+
+        try {
+            const res = await fetch("https://jamble-backend-test-us-576189464787.us-central1.run.app/profile/create_referral_link", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    type: "buyer",
+                    referrer_id: referrerId,
+                    referee_phone_number: phoneValue
+                }),
+            });
+            const data = await res.json();
+            if (!data.success) throw new Error(data.message);
+            setIsSuccess(true);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setIsLoading(true);
+            setIsLoading(false);
+        }
     }
 
     return (
@@ -236,5 +262,4 @@ export default function FriendInvite({ countryCode }: { countryCode: string }) {
             )}
         </div>
     );
-
 }
