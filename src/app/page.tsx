@@ -1,4 +1,3 @@
-// src/app/page.tsx
 import SmartBanner from "@/components/SmartAppBanner";
 
 export default function HomePage() {
