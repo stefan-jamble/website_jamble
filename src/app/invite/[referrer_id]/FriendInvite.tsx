@@ -189,7 +189,7 @@ export default function FriendInvite({
         setIsLoading(true);
 
         try {
-            const res = await fetch("https://jamble-backend-test-us-576189464787.us-central1.run.app/profile/create_referral_link", {
+            const res = await fetch("https://jamble-backend-test-us-576189464787.us-central1.run.app/profile/create_referral_intent", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
