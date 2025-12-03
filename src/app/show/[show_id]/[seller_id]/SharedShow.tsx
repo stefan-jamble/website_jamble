@@ -21,9 +21,11 @@ interface ProfileData {
 interface SharedShowProps {
   show: ShowData;
   profile: ProfileData;
+  countryCode: string;
 }
 
-export default function SharedShow({ show, profile }: SharedShowProps) {
+export default function SharedShow({ show, profile, countryCode }: SharedShowProps) {
+  const isBR = countryCode === "BR";
   const date = new Date(show.starting_at);
   const dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()];
   const month = date.getMonth() + 1;
@@ -43,26 +45,38 @@ export default function SharedShow({ show, profile }: SharedShowProps) {
     >
       <div className="flex flex-row justify-between items-center gap-x-2">
         <Image src="/logo-jamble.png" alt="Jamble" height={48} width={48} />
-        <p className="font-bold text-sm">Your friend invited you to join a show on Jamble!</p>
+        <p className="font-bold text-sm">
+          {isBR
+            ? "Seu amigo te convidou para participar de um show no Jamble!"
+            : "Your friend invited you to join a show on Jamble!"}
+        </p>
         <Drawer>
           <DrawerTrigger asChild>
             <div className="bg-black rounded-full px-3 py-2">
               <p className="text-white text-sm text-nowrap">Open App</p>
             </div>
           </DrawerTrigger>
-          <DrawerContent>
+          <DrawerContent className="max-h-[300px]">
             <DrawerHeader>
               <DrawerTitle className="text-left text-xl font-bold text-black">
-                Let's get you started
+                {isBR ? "Vamos começar" : "Let's get you started"}
               </DrawerTitle>
             </DrawerHeader>
             <div className="w-full flex flex-col justify-center items-stretch gap-y-2 px-4 pb-4">
               <Button asChild className="bg-[#7E53F8] text-white rounded-full">
-                <a href="jamble://open">Open Jamble App</a>
+                <a href="jamble://open">
+                  {isBR ? "Abrir app Jamble" : "Open Jamble App"}
+                </a>
               </Button>
               <Button asChild className="bg-gray-50 rounded-full">
-                <a href="https://apps.apple.com/1599696300" target="_blank" rel="noopener noreferrer">
-                  Download Jamble
+                <a
+                  href={
+                    isBR
+                      ? "https://apps.apple.com/br/app/id1599696300"
+                      : "https://apps.apple.com/app/id1599696300"
+                  }
+                >
+                  {isBR ? "Baixar Jamble" : "Download Jamble"}
                 </a>
               </Button>
             </div>
@@ -92,16 +106,26 @@ export default function SharedShow({ show, profile }: SharedShowProps) {
           <DrawerContent>
             <DrawerHeader>
               <DrawerTitle className="text-left text-xl font-bold text-black">
-                Let's get you started
+                {isBR ? "Vamos começar" : "Let's get you started"}
               </DrawerTitle>
             </DrawerHeader>
             <div className="w-full flex flex-col justify-center items-stretch gap-y-2 px-4 pb-4">
               <Button asChild className="bg-[#7E53F8] text-white rounded-full">
-                <a href="jamble://open">Open Jamble App</a>
+                <a href="jamble://open">
+                  {isBR ? "Abrir app Jamble" : "Open Jamble App"}
+                </a>
               </Button>
               <Button asChild className="bg-gray-50 rounded-full">
-                <a href="https://apps.apple.com/1599696300" target="_blank" rel="noopener noreferrer">
-                  Download Jamble
+                <a
+                  href={
+                    isBR
+                      ? "https://apps.apple.com/br/app/id1599696300"
+                      : "https://apps.apple.com/app/id1599696300"
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {isBR ? "Baixar Jamble" : "Download Jamble"}
                 </a>
               </Button>
             </div>
