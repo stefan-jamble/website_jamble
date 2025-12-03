@@ -104,6 +104,7 @@ const CountrySelectDrawer = ({
     
                 <Command className="px-4 pb-4 flex flex-col gap-y-4 flex-1 overflow-y-auto">
                     <CommandInput
+                        className="text-[16px]"
                         value={search}
                         onValueChange={setSearch}
                         placeholder={translations.searchCountries}
