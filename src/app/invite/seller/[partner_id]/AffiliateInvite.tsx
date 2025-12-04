@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { useParams, useSearchParams } from "next/navigation";
 import * as RPNInput from "react-phone-number-input";
 import { getCountries, getCountryCallingCode, isValidPhoneNumber } from "react-phone-number-input";
 import { Button } from "@/components/ui/button";
@@ -146,15 +145,13 @@ const CountrySelectDrawer = ({
 
 export default function AffiliateInvite({
     countryCode,
+    partnerId,
+    utmCampaign,
 }: {
     countryCode: string;
+    partnerId?: string;
+    utmCampaign?: string;
 }) {
-    const params = useParams<{ partner_id?: string }>();
-    const searchParams = useSearchParams();
-
-    const partnerId = params?.partner_id;
-    const utmCampaign = searchParams.get("utm_campaign") ?? undefined;
-
     const countryList = getCountries();
     const normalized = (countryCode ||  "").toUpperCase();
     const isValid = countryList.includes(normalized as any) && normalized.length === 2;
