@@ -146,9 +146,11 @@ const CountrySelectDrawer = ({
 export default function AffiliateInvite({
     countryCode,
     partnerId,
+    utmCampaign,
 }: {
     countryCode: string;
     partnerId?: string;
+    utmCampaign?: string;
 }) {
     const countryList = getCountries();
     const normalized = (countryCode ||  "").toUpperCase();
@@ -197,7 +199,8 @@ export default function AffiliateInvite({
                 body: JSON.stringify({
                     type: "sellers",
                     referrer_id: partnerId,
-                    referee_phone_number: phoneValue
+                    referee_phone_number: phoneValue,
+                    campain: utmCampaign
                 }),
             });
             const data = await res.json();
