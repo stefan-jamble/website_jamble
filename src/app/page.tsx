@@ -4,7 +4,7 @@ import { getCountryCode } from "@/lib/location";
 export default async function HomePage() {
   const countryCode = await getCountryCode();
   const iframeSrc =
-    countryCode === "BR" ? "/homepage-br.html" : "/homepage-br.html";
+    countryCode === "BR" ? "/homepage-br.html" : "/homepage.html";
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
