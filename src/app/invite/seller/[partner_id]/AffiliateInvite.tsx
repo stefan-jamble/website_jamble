@@ -234,18 +234,19 @@ export default function AffiliateInvite({
             {isAlreadyClaimed ? (
                 <>
                     <p className="text-3xl font-bold text-center">{t.alreadyClaimedTitle}</p>
-                    <Button
+                    <a
+                        href="https://lestudioslingshot.fr"
                         className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white"
                     >
-                        <a href="https://lestudioslingshot.fr">{t.alreadyClaimedButton}</a>
-                    </Button>
+                        {t.alreadyClaimedButton}
+                    </a>
                 </>
             ) : isSuccess ? (
                 <>
                     <p className="text-3xl font-bold text-center">{t.successTitle}</p>
-                    <Button className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white">
-                        <a href="https://lestudioslingshot.fr">{t.successButton}</a>
-                    </Button>
+                    <a href="https://lestudioslingshot.fr" className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white">
+                        {t.successButton}
+                    </a>
                 </>
             ) : (
                 <>
