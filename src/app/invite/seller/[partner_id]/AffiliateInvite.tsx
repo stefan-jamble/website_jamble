@@ -200,7 +200,7 @@ export default function AffiliateInvite({
                     type: "sellers",
                     referrer_id: partnerId,
                     referee_phone_number: phoneValue,
-                    campain: utmCampaign
+                    subtype: utmCampaign
                 }),
             });
             const data = await res.json();
