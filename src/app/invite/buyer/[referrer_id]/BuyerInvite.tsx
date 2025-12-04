@@ -229,8 +229,6 @@ export default function BuyerInvite({
                 <>
                     <p className="text-3xl font-bold text-center">{t.alreadyClaimedTitle}</p>
                     <a
-                        target="_blank"
-                        rel="noopener noreferrer"
                         href="https://lestudioslingshot.fr"
                         className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white flex justify-center items-center"
                     >
@@ -242,8 +240,6 @@ export default function BuyerInvite({
                 <>
                     <p className="text-3xl font-bold text-center">{t.successTitle}</p>
                     <a
-                        target="_blank"
-                        rel="noopener noreferrer"
                         href="https://lestudioslingshot.fr"
                         className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white flex justify-center items-center"
                     >

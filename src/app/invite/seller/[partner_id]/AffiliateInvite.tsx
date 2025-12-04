@@ -235,8 +235,6 @@ export default function AffiliateInvite({
                 <>
                     <p className="text-3xl font-bold text-center">{t.alreadyClaimedTitle}</p>
                     <a
-                        target="_blank"
-                        rel="noopener noreferrer"
                         href="https://lestudioslingshot.fr"
                         className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white text-center flex justify-center items-center font-semibold"
                     >
@@ -247,8 +245,6 @@ export default function AffiliateInvite({
                 <>
                     <p className="text-3xl font-bold text-center">{t.successTitle}</p>
                     <a 
-                        target="_blank"
-                        rel="noopener noreferrer"
                         href="https://lestudioslingshot.fr" 
                         className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white text-center flex justify-center items-center font-semibold"
                     >
