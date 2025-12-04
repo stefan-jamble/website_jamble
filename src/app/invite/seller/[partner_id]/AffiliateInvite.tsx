@@ -14,26 +14,26 @@ import { Command, CommandEmpty, CommandInput, CommandItem, CommandList, CommandS
 
 const translations = {
     en: {
-        successTitle: "Congratulations! Download the app to claim your R$20.",
-        successButton: "Use the app to spend it!",
-        mainTitle: "You have R$20 to spend on Jamble!",
+        successTitle: "Congratulations! Download the app to start making money.",
+        successButton: "Use the app to join!",
+        mainTitle: "You're invited to join Jamble as a Seller!",
         countryCodeTitle: "Country Code",
         searchCountries: "Search countries...",
         noCountriesFound: "No countries found.",
         activating: "Activating...",
-        activateCredit: "Activate your Credit",
+        activateCredit: "Activate your Account",
         alreadyClaimedTitle: "You've already claimed this reward with this phone number.",
         alreadyClaimedButton: "Open the app"
     },
     pt: {
-        successTitle: "Parabéns! Baixe o aplicativo para reivindicar seus R$20.",
-        successButton: "Use o app para gastá-lo!",
-        mainTitle: "Você tem R$20 para gastar no Jamble!",
+        successTitle: "Parabéns! Baixe o aplicativo para começar a ganhar dinheiro.",
+        successButton: "Use o app para participar!",
+        mainTitle: "Você foi convidado para entrar no Jamble como Vendedor!",
         countryCodeTitle: "Código do país",
         searchCountries: "Pesquisar países...",
         noCountriesFound: "Nenhum país encontrado.",
         activating: "Ativando...",
-        activateCredit: "Ativar seu Crédito",
+        activateCredit: "Ativar sua Conta",
         alreadyClaimedTitle: "Você já resgatou essa recompensa com este número de telefone.",
         alreadyClaimedButton: "Abrir o app"
     }
@@ -143,12 +143,12 @@ const CountrySelectDrawer = ({
 };
   
 
-export default function FriendInvite({
+export default function AffiliateInvite({
     countryCode,
-    referrerId,
+    partnerId,
 }: {
     countryCode: string;
-    referrerId?: string;
+    partnerId?: string;
 }) {
     const countryList = getCountries();
     const normalized = (countryCode ||  "").toUpperCase();
@@ -195,8 +195,8 @@ export default function FriendInvite({
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    type: "buyer",
-                    referrer_id: referrerId,
+                    type: "sellers",
+                    referrer_id: partnerId,
                     referee_phone_number: phoneValue
                 }),
             });

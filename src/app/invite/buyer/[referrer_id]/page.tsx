@@ -1,4 +1,4 @@
-import FriendInvite from "./FriendInvite";
+import BuyerInvite from "./BuyerInvite";
 import { getCountryCode } from "@/lib/location";
 
 interface PageProps {
@@ -12,7 +12,7 @@ export default async function InviteWithReferrerPage({ params }: PageProps) {
   const countryCode = await getCountryCode();
 
   return (
-    <FriendInvite countryCode={countryCode} referrerId={referrer_id} />
+    <BuyerInvite countryCode={countryCode} referrerId={referrer_id} />
   );
 }
 
