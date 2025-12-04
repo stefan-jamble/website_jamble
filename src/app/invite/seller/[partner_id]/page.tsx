@@ -18,8 +18,6 @@ export default async function InviteWithPartnerPage({ params, searchParams }: Pa
     return (
         <AffiliateInvite 
             countryCode={countryCode} 
-            partnerId={partner_id} 
-            utmCampaign={utmCampaign}
         />
     );
 }

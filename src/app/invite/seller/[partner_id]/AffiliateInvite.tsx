@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { useParams, useSearchParams } from "next/navigation";
 import * as RPNInput from "react-phone-number-input";
 import { getCountries, getCountryCallingCode, isValidPhoneNumber } from "react-phone-number-input";
 import { Button } from "@/components/ui/button";
@@ -145,13 +146,15 @@ const CountrySelectDrawer = ({
 
 export default function AffiliateInvite({
     countryCode,
-    partnerId,
-    utmCampaign,
 }: {
     countryCode: string;
-    partnerId?: string;
-    utmCampaign?: string;
 }) {
+    const params = useParams<{ partner_id?: string }>();
+    const searchParams = useSearchParams();
+
+    const partnerId = params?.partner_id;
+    const utmCampaign = searchParams.get("utm_campaign") ?? undefined;
+
     const countryList = getCountries();
     const normalized = (countryCode ||  "").toUpperCase();
     const isValid = countryList.includes(normalized as any) && normalized.length === 2;
@@ -190,6 +193,9 @@ export default function AffiliateInvite({
         if (!phoneValue) return;
         setIsLoading(true);
 
+        console.log("partnerId: ", partnerId)
+        console.log("subtype: ", utmCampaign)
+
         try {
             const res = await fetch("https://jamble-backend-test-us-576189464787.us-central1.run.app/profile/create_referral_intent", {
                 method: "POST",
@@ -197,7 +203,7 @@ export default function AffiliateInvite({
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    type: "sellers",
+                    type: "seller",
                     referrer_id: partnerId,
                     referee_phone_number: phoneValue,
                     subtype: utmCampaign
@@ -205,7 +211,7 @@ export default function AffiliateInvite({
             });
             const data = await res.json();
 
-            // if (res.status === 409 && data?.error_code === "PROFILE_REFERRAL_INTENT_ALREADY_EXISTS") {
+            // if (res.status === 400 && data?.error_code === "PROFILE_REFERRAL_INTENT_ALREADY_EXISTS") {
             //     setIsAlreadyClaimed(true);
             //     return;
             // }
