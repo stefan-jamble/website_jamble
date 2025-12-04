@@ -235,14 +235,14 @@ export default function AffiliateInvite({
                         onClick={() => console.log("Already claimed button clicked")}
                         className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white"
                     >
-                        {t.alreadyClaimedButton}
+                        <a href="https://lestudioslingshot.fr">{t.alreadyClaimedButton}</a>
                     </Button>
                 </>
             ) : isSuccess ? (
                 <>
                     <p className="text-3xl font-bold text-center">{t.successTitle}</p>
                     <Button onClick={() => console.log("Success button clicked")} className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white">
-                        {t.successButton}
+                        <a href="https://lestudioslingshot.fr">{t.successButton}</a>
                     </Button>
                 </>
             ) : (

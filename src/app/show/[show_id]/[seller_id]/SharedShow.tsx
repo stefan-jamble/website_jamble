@@ -50,38 +50,9 @@ export default function SharedShow({ show, profile, countryCode }: SharedShowPro
             ? "Seu amigo te convidou para participar de um show no Jamble!"
             : "Your friend invited you to join a show on Jamble!"}
         </p>
-        <Drawer>
-          <DrawerTrigger asChild>
-            <div className="bg-black rounded-full px-3 py-2">
-              <p className="text-white text-sm text-nowrap">Open App</p>
-            </div>
-          </DrawerTrigger>
-          <DrawerContent className="max-h-[300px]">
-            <DrawerHeader>
-              <DrawerTitle className="text-left text-xl font-bold text-black">
-                {isBR ? "Vamos começar" : "Let's get you started"}
-              </DrawerTitle>
-            </DrawerHeader>
-            <div className="w-full flex flex-col justify-center items-stretch gap-y-2 px-4 pb-4">
-              <Button asChild className="bg-[#7E53F8] text-white rounded-full">
-                <a href="jamble://open">
-                  {isBR ? "Abrir app Jamble" : "Open Jamble App"}
-                </a>
-              </Button>
-              <Button asChild className="bg-gray-50 rounded-full">
-                <a
-                  href={
-                    isBR
-                      ? "https://apps.apple.com/br/app/id1599696300"
-                      : "https://apps.apple.com/app/id1599696300"
-                  }
-                >
-                  {isBR ? "Baixar Jamble" : "Download Jamble"}
-                </a>
-              </Button>
-            </div>
-          </DrawerContent>
-        </Drawer>
+        <div className="bg-black rounded-full px-3 py-2">
+          <a href="https://lestudioslingshot.fr" className="text-white text-sm text-nowrap">Open App</a>
+        </div>
       </div>
 
       <div className="flex flex-col justify-center items-center gap-y-5 border border-slate-200 border-1 px-6 py-8 rounded-2xl bg-white">
@@ -96,42 +67,9 @@ export default function SharedShow({ show, profile, countryCode }: SharedShowPro
 
         <p className="font-semibold text-center text-3xl">{show.title}</p>
 
-        {/* Another drawer / CTA button */}
-        <Drawer>
-          <DrawerTrigger asChild>
-            <div className="rounded-full px-4 py-2 bg-[#7E53F8]">
-              <p className="text-white font-semibold">Join The Show</p>
-            </div>
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle className="text-left text-xl font-bold text-black">
-                {isBR ? "Vamos começar" : "Let's get you started"}
-              </DrawerTitle>
-            </DrawerHeader>
-            <div className="w-full flex flex-col justify-center items-stretch gap-y-2 px-4 pb-4">
-              <Button asChild className="bg-[#7E53F8] text-white rounded-full">
-                <a href="jamble://open">
-                  {isBR ? "Abrir app Jamble" : "Open Jamble App"}
-                </a>
-              </Button>
-              <Button asChild className="bg-gray-50 rounded-full">
-                <a
-                  href={
-                    isBR
-                      ? "https://apps.apple.com/br/app/id1599696300"
-                      : "https://apps.apple.com/app/id1599696300"
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {isBR ? "Baixar Jamble" : "Download Jamble"}
-                </a>
-              </Button>
-            </div>
-          </DrawerContent>
-        </Drawer>
-
+        <div className="rounded-full px-4 py-2 bg-[#7E53F8]">
+          <a href="https://lestudioslingshot.fr" className="text-white font-semibold">Join The Show</a>
+        </div>
         <Image className="rounded-2xl" src={show.cover_image.original_url} alt={show.title} height={300} width={300} />
         <p>Bookmarks: {show.bookmark_count}</p>
       </div>
