@@ -229,7 +229,6 @@ export default function BuyerInvite({
                 <>
                     <p className="text-3xl font-bold text-center">{t.alreadyClaimedTitle}</p>
                     <Button
-                        onClick={() => console.log("Already claimed button clicked")}
                         className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white"
                     >
                         <a href="https://lestudioslingshot.fr">{t.alreadyClaimedButton}</a>
@@ -238,7 +237,7 @@ export default function BuyerInvite({
             ) : isSuccess ? (
                 <>
                     <p className="text-3xl font-bold text-center">{t.successTitle}</p>
-                    <Button onClick={() => console.log("Success button clicked")} className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white">
+                    <Button className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white">
                         <a href="https://lestudioslingshot.fr">{t.successButton}</a>
                     </Button>
                 </>

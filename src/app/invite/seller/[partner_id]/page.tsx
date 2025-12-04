@@ -11,9 +11,11 @@ interface PageProps {
 }
 
 export default async function InviteWithPartnerPage({ params, searchParams }: PageProps) {
-    const { partner_id } = params;
+    const { partner_id } = await params;
     const countryCode = await getCountryCode();
-    const utmCampaign = (searchParams?.utm_campaign ?? undefined) as string | undefined;
+    const resolvedSearchParams = await searchParams;
+    const utmCampaign = (resolvedSearchParams?.utm_campaign ?? undefined) as string | undefined;
+
 
     return (
         <AffiliateInvite 
