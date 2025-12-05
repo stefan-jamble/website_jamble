@@ -222,19 +222,6 @@ export default function BuyerInvite({
         }
     }
 
-    function openApp() {
-        const appScheme = "jamble://home"
-        const now = Date.now();
-
-        window.location.href = appScheme;
-
-        setTimeout(() => {
-            if (Date.now() - now < 1000) {
-                window.location.href = 'https://lestudioslingshot.fr';
-            }
-        }, 1000);
-
-    }
 
     return (
         <div className="w-full h-[80vh] p-6 bg-white flex flex-col justify-center items-center gap-y-6">
@@ -242,9 +229,6 @@ export default function BuyerInvite({
             {isAlreadyClaimed ? (
                 <>
                     <p className="text-3xl font-bold text-center">{t.alreadyClaimedTitle}</p>
-                    <button onClick={openApp} className="w-full h-12 rounded-full text-xl bg-[#E53F8] text-white flex justify-center items-center">
-                        {t.alreadyClaimedButton}
-                    </button>
                     <a
                         href="https://lestudioslingshot.fr/"
                         className="w-full h-12 rounded-full text-xl bg-[#7E53F8] text-white flex justify-center items-center"
