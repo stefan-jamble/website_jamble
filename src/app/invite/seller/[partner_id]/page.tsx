@@ -1,5 +1,6 @@
 import AffiliateInvite from "./AffiliateInvite";
 import { getCountryCode } from "@/lib/location";
+import { cookies } from "next/headers";
 
 interface PageProps {
     params: {
@@ -15,6 +16,11 @@ export default async function InviteWithPartnerPage({ params, searchParams }: Pa
     const countryCode = await getCountryCode();
     const resolvedSearchParams = await searchParams;
     const utmCampaign = (resolvedSearchParams?.utm_campaign ?? undefined) as string | undefined;
+
+    const cookieStore = cookies();
+    const dubId = (await cookieStore).get("dub_id")?.value;
+
+    console.log("Dub ID: ", dubId);
 
 
     return (
