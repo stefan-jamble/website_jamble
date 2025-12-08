@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         {children}
       </body>
-      <DubAnalytics />
+      <DubAnalytics domainsConfig={{ refer: "lestudioslingshot.fr"}} />
     </html>
   );
 }
