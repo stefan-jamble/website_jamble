@@ -12,16 +12,21 @@ export default function HomePage() {
     getCountryCode()
       .then((code) => {
         if (!isMounted) return;
+        console.log("code:", code);
         setIframeSrc(code === "BR" ? "/homepage-br.html" : "/homepage.html");
       })
-      .catch(() => {
-        // fall back to default already set
+      .catch((err) => {
+        console.error("Failed to get country code:", err);
       });
 
     return () => {
       isMounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    console.log("iframeSrc updated:", iframeSrc);
+  }, [iframeSrc]);
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>

@@ -125,7 +125,7 @@
     <div class="page-wrapper">
       <div data-animation="default" class="navbar16_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="all" data-w-id="5f1a24e8-71c2-eb5a-fc54-156e3ac562a2" role="banner" data-duration="0" id="navbar-top">
         <div class="navbar16_container">
-          <a href="/br" aria-current="page" class="navbar16_logo-link w-nav-brand w--current">          <img id="navbar-logo" src="https://cdn.prod.website-files.com/656702df41c68a41e8fc19e6/656f624ae904a5834c811b6c_logo-black.png" loading="lazy" alt="" class="navbar16_logo logo-black" />
+          <a href="/" aria-current="page" class="navbar16_logo-link w-nav-brand w--current">          <img id="navbar-logo" src="https://cdn.prod.website-files.com/656702df41c68a41e8fc19e6/656f624ae904a5834c811b6c_logo-black.png" loading="lazy" alt="" class="navbar16_logo logo-black" />
           <img id="navbar-logo-white" src="https://cdn.prod.website-files.com/656702df41c68a41e8fc19e6/656f6264b46aef12a9208d0f_logo-white.png" loading="lazy" alt="" class="navbar16_logo logo-white" />
 </a>
           <div class="navbar16_wrapper">
@@ -1553,7 +1553,7 @@
 </a>
                         <a href="#Reviews" class="footer3_link">                        Terms of Use
 </a>
-                        <a href="/br/agency" target="_blank" class="footer3_link">                        Jamble Agency
+                        <a href="/agency" target="_blank" class="footer3_link">                        Jamble Agency
 </a>
                       </div>
                     </div>
@@ -1566,9 +1566,9 @@
                     © 2023 Jamble.
                   </div>
                   <div class="w-layout-grid footer3_legal-list">
-                    <a href="/br/privacy" class="footer3_legal-link-2">                    Política de Privacidade
+                    <a href="/privacy" class="footer3_legal-link-2">                    Política de Privacidade
 </a>
-                    <a href="/br/terms" class="footer3_legal-link-2">                    Termos
+                    <a href="/terms" class="footer3_legal-link-2">                    Termos
 </a>
                   </div>
                 </div>
@@ -1622,31 +1622,6 @@
       return; // Stop here, don&#39;t redirect bots
     }
 
-    // 🪶 Preload Brazilian page
-    const preloadLink = document.createElement('link');
-    preloadLink.rel = 'prefetch';
-    preloadLink.href = '/br';
-    document.head.appendChild(preloadLink);
-
-    // 🌍 Geo check (single request, fast)
-    const geoRes = await fetch('https://ipapi.co/json/');
-    const geoData = await geoRes.json();
-
-    const isBrazil = geoData.country === 'BR';
-    const isOnBrazilPage = window.location.pathname.startsWith('/br');
-
-    if (isBrazil && !isOnBrazilPage) {
-      // 🧹 Clear Webflow locale cookie
-      document.cookie = 'wf_l10n=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      
-      // ✨ Fade transition
-      document.documentElement.style.opacity = '0';
-      setTimeout(() => (window.location.href = '/br'), 200);
-    } else {
-      // 🪄 Reveal normal page
-      document.documentElement.style.visibility = 'visible';
-      document.documentElement.style.opacity = '1';
-    }
   } catch (err) {
     console.error('Geo redirect failed:', err);
     document.documentElement.style.visibility = 'visible';
