@@ -1,10 +1,27 @@
-import SmartBanner from "@/components/SmartAppBanner";
+'use client';
+
+import { useEffect, useState } from "react";
 import { getCountryCode } from "@/lib/location";
 
-export default async function HomePage() {
-  const countryCode = await getCountryCode();
-  const iframeSrc =
-    countryCode === "BR" ? "/homepage-br.html" : "/homepage.html";
+export default function HomePage() {
+  const [iframeSrc, setIframeSrc] = useState("/homepage.html");
+
+  useEffect(() => {
+    let isMounted = true;
+
+    getCountryCode()
+      .then((code) => {
+        if (!isMounted) return;
+        setIframeSrc(code === "BR" ? "/homepage-br.html" : "/homepage.html");
+      })
+      .catch(() => {
+        // fall back to default already set
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
