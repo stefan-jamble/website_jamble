@@ -147,10 +147,12 @@ export default function AffiliateInvite({
     countryCode,
     partnerId,
     utmCampaign,
+    dubId,
 }: {
     countryCode: string;
     partnerId?: string;
     utmCampaign?: string;
+    dubId?: string;
 }) {
     const countryList = getCountries();
     const normalized = (countryCode ||  "").toUpperCase();
@@ -203,7 +205,8 @@ export default function AffiliateInvite({
                     type: "seller",
                     referrer_id: partnerId,
                     referee_phone_number: phoneValue,
-                    subtype: utmCampaign
+                    subtype: utmCampaign,
+                    dub_id: dubId
                 }),
             });
             const data = await res.json();
