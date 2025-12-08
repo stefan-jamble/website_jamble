@@ -20,6 +20,8 @@ export default async function InviteWithPartnerPage({ params, searchParams }: Pa
     const cookieStore = cookies();
     const dubId = (await cookieStore).get("dub_id")?.value;
 
+    console.log("Country Code: ", countryCode)
+    console.log("partnerId: ", partner_id)
     console.log("Dub ID: ", dubId);
 
 
