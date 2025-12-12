@@ -1,6 +1,6 @@
 import AffiliateInvite from "./AffiliateInvite";
 import { getCountryCode } from "@/lib/location";
-import { cookies } from "next/headers";
+import { headers, cookies } from "next/headers";
 
 interface PageProps {
     params: {
@@ -33,6 +33,7 @@ async function fetchPartnerProfile(partner_username: string) {
     );
 
     const data = await res.json();
+    console.log("data.success: ", data.success)
 
     if (!data.success) {
         throw new Error("Failed to fetch partner profile");
@@ -45,7 +46,8 @@ async function fetchPartnerProfile(partner_username: string) {
 
 export default async function InviteWithPartnerPage({ params, searchParams }: PageProps) {
     const { partner_username } = await params;
-    const countryCode = await getCountryCode();
+    const incomingHeaders = await headers();
+    const countryCode = incomingHeaders.get("x-vercel-ip-country") || "Unknown";
     const resolvedSearchParams = await searchParams;
     const utmCampaign = (resolvedSearchParams?.utm_campaign ?? undefined) as string | undefined;
 
