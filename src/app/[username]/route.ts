@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 
 export async function GET(
     _request: Request,
-    { params }: { params: { username: string }}
+    { params }: { params: Promise<{ username: string }>}
 ) {
     const { username } = await params;
     const dubLink = `https://br.jamble.com/${username}`
