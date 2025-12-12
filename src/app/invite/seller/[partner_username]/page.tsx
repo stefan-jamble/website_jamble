@@ -54,6 +54,8 @@ export default async function InviteWithPartnerPage({ params, searchParams }: Pa
 
     const partner = await fetchPartnerProfile(partner_username)
 
+    console.log("countryCode: ", countryCode)
+
 
     return (
         <AffiliateInvite 
