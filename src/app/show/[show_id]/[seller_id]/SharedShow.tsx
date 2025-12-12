@@ -43,18 +43,6 @@ export default function SharedShow({ show, profile, countryCode }: SharedShowPro
         backgroundPosition: 'center',
       }}
     >
-      <div className="flex flex-row justify-between items-center gap-x-2">
-        <Image src="/logo-jamble.png" alt="Jamble" height={48} width={48} />
-        <p className="font-bold text-sm">
-          {isBR
-            ? "Seu amigo te convidou para participar de um show no Jamble!"
-            : "Your friend invited you to join a show on Jamble!"}
-        </p>
-        <div className="bg-black rounded-full px-3 py-2">
-          <a href="https://lestudioslingshot.fr" className="text-white text-sm text-nowrap">Open App</a>
-        </div>
-      </div>
-
       <div className="flex flex-col justify-center items-center gap-y-5 border border-slate-200 border-1 px-6 py-8 rounded-2xl bg-white">
         <div className="flex flex-row justify-center items-center gap-x-2">
           <Image className="rounded-full" src={profile.profile_image.original_url} alt={profile.username} height={48} width={48} />
@@ -68,7 +56,7 @@ export default function SharedShow({ show, profile, countryCode }: SharedShowPro
         <p className="font-semibold text-center text-3xl">{show.title}</p>
 
         <div className="rounded-full px-4 py-2 bg-[#7E53F8]">
-          <a href="https://lestudioslingshot.fr" className="text-white font-semibold">Join The Show</a>
+          <a href="https://jamblelink.com" className="text-white font-semibold">Join The Show</a>
         </div>
         <Image className="rounded-2xl" src={show.cover_image.original_url} alt={show.title} height={300} width={300} />
         <p>Bookmarks: {show.bookmark_count}</p>
