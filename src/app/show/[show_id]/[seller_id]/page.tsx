@@ -1,5 +1,6 @@
 import SharedShow from "./SharedShow";
 import { getCountryCode } from "@/lib/location";
+import { headers } from "next/headers";
 
 interface PageProps {
     params: {
@@ -69,7 +70,8 @@ export default async function SharedShowPage({ params }: PageProps) {
         return <div>Error loading show: {(err as Error).message}</div>;
     }
   
-    const countryCode = await getCountryCode();
+    const incomingHeaders = await headers();
+    const countryCode = incomingHeaders.get("x-vercel-ip-country") || "Unknown";
   
     return <SharedShow show={show} profile={profile} countryCode={countryCode} />;
 }

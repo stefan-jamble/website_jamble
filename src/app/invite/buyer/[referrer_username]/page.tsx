@@ -1,5 +1,6 @@
 import BuyerInvite from "./BuyerInvite";
 import { getCountryCode } from "@/lib/location";
+import { headers } from "next/headers";
 
 interface PageProps {
   params: {
@@ -41,7 +42,8 @@ async function fetchReferrerProfile(referrer_username: string) {
 
 export default async function InviteWithReferrerPage({ params }: PageProps) {
   const { referrer_username } = await params;
-  const countryCode = await getCountryCode();
+  const incomingHeaders = await headers();
+  const countryCode = incomingHeaders.get("x-vercel-ip-country") || "Unknown";
 
   const referrer = await fetchReferrerProfile(referrer_username)
 

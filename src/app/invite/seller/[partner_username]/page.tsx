@@ -1,5 +1,4 @@
 import AffiliateInvite from "./AffiliateInvite";
-import { getCountryCode } from "@/lib/location";
 import { headers, cookies } from "next/headers";
 
 interface PageProps {
