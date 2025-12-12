@@ -9,6 +9,7 @@ interface PageProps {
 }
 
 interface ShowData {
+    id: string;
     title: string;
     description: string;
     starting_at: string;
@@ -17,6 +18,7 @@ interface ShowData {
 }
 
 interface ProfileData {
+    id: string;
     username: string;
     profile_image: { original_url: string };
 }

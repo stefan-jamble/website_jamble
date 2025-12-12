@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 
 interface ShowData {
+  id: string;
   title: string;
   description: string;
   starting_at: string;
@@ -14,6 +15,7 @@ interface ShowData {
 }
 
 interface ProfileData {
+  id: string;
   username: string;
   profile_image: { original_url: string };
 }
@@ -56,7 +58,7 @@ export default function SharedShow({ show, profile, countryCode }: SharedShowPro
         <p className="font-semibold text-center text-3xl">{show.title}</p>
 
         <div className="rounded-full px-4 py-2 bg-[#7E53F8]">
-          <a href="https://jamblelink.com" className="text-white font-semibold">Join The Show</a>
+          <a href={`https://jamblelink.com/show?profile=${profile.id}&show=${show.id}`} className="text-white font-semibold">Join The Show</a>
         </div>
         <Image className="rounded-2xl" src={show.cover_image.original_url} alt={show.title} height={300} width={300} />
         <p>Bookmarks: {show.bookmark_count}</p>
