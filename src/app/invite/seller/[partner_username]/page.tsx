@@ -17,12 +17,12 @@ interface PartnerProfileData {
 
 async function fetchPartnerProfile(partner_username: string) {
     const headers = {
-        Authorization: "Bearer ca9d3151-ebdd-4902-8a61-63a2564838ce",
+        Authorization: `Bearer ${process.env.ADMIN_AUTH_KEY}`,
         "Content-Type": "application/json"
     }
 
     const res = await fetch(
-        "https://jamble-backend-test-us-576189464787.us-central1.run.app/profile/get_profile_from_username",
+        `${process.env.JAMBLE_API_URL}/profile/get_profile_from_username`,
         {
             method: "POST",
             headers,
@@ -55,8 +55,7 @@ export default async function InviteWithPartnerPage({ params, searchParams }: Pa
 
     const partner = await fetchPartnerProfile(partner_username)
 
-    console.log("countryCode: ", countryCode)
-
+    const JAMBLE_API_URL = process.env.JAMBLE_API_URL;
 
     return (
         <AffiliateInvite 
@@ -64,6 +63,7 @@ export default async function InviteWithPartnerPage({ params, searchParams }: Pa
             partnerId={partner.id} 
             utmCampaign={utmCampaign}
             dubId={dubId}
+            JAMBLE_API_URL={JAMBLE_API_URL}
         />
     );
 }

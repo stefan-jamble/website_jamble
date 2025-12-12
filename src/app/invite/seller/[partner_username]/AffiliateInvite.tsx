@@ -148,11 +148,13 @@ export default function AffiliateInvite({
     partnerId,
     utmCampaign,
     dubId,
+    JAMBLE_API_URL
 }: {
     countryCode: string;
     partnerId?: string;
     utmCampaign?: string;
     dubId?: string;
+    JAMBLE_API_URL?: string;
 }) {
     const countryList = getCountries();
     const normalized = (countryCode ||  "").toUpperCase();
@@ -196,7 +198,7 @@ export default function AffiliateInvite({
         console.log("subtype: ", utmCampaign)
 
         try {
-            const res = await fetch("https://jamble-backend-test-us-576189464787.us-central1.run.app/profile/create_referral_intent", {
+            const res = await fetch(`${JAMBLE_API_URL}/profile/create_referral_intent`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

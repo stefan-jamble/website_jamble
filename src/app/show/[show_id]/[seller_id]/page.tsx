@@ -26,13 +26,13 @@ interface ProfileData {
 
 async function fetchShowAndProfile(show_id: string, seller_id: string) {
     const headers = {
-        Authorization: "Bearer ca9d3151-ebdd-4902-8a61-63a2564838ce",
+        Authorization: `Bearer ${process.env.ADMIN_AUTH_KEY}`,
         "Content-Type": "application/json",
     };
   
     const [showRes, profileRes] = await Promise.all([
         fetch(
-            "https://jamble-backend-test-us-576189464787.us-central1.run.app/show/get_show",
+            `${process.env.JAMBLE_API_URL}/show/get_show`,
             {
                 method: "POST",
                 headers,
@@ -41,7 +41,7 @@ async function fetchShowAndProfile(show_id: string, seller_id: string) {
             }
         ).then((r) => r.json()),
         fetch(
-            "https://jamble-backend-test-us-576189464787.us-central1.run.app/profile/get_profile",
+            `${process.env.JAMBLE_API_URL}/profile/get_profile`,
             {
                 method: "POST",
                 headers,

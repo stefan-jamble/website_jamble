@@ -2,8 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 
 interface ShowData {
   id: string;

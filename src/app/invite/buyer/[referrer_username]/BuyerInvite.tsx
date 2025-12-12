@@ -146,9 +146,11 @@ const CountrySelectDrawer = ({
 export default function BuyerInvite({
     countryCode,
     referrerId,
+    JAMBLE_API_URL
 }: {
     countryCode: string;
     referrerId?: string;
+    JAMBLE_API_URL?: string;
 }) {
     const countryList = getCountries();
     const normalized = (countryCode ||  "").toUpperCase();
@@ -189,7 +191,7 @@ export default function BuyerInvite({
         setIsLoading(true);
 
         try {
-            const res = await fetch("https://jamble-backend-test-us-576189464787.us-central1.run.app/profile/create_referral_intent", {
+            const res = await fetch(`${JAMBLE_API_URL}/profile/create_referral_intent`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

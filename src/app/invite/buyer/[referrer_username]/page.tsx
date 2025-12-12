@@ -15,12 +15,12 @@ interface ReferrerProfileData {
 
 async function fetchReferrerProfile(referrer_username: string) {
   const headers = {
-      Authorization: "Bearer ca9d3151-ebdd-4902-8a61-63a2564838ce",
+      Authorization: `Bearer ${process.env.ADMIN_AUTH_KEY}`,
       "Content-Type": "application/json"
   }
 
   const res = await fetch(
-      "https://jamble-backend-test-us-576189464787.us-central1.run.app/profile/get_profile_from_username",
+      `${process.env.JAMBLE_API_URL}/profile/get_profile_from_username`,
       {
           method: "POST",
           headers,
@@ -47,8 +47,10 @@ export default async function InviteWithReferrerPage({ params }: PageProps) {
 
   const referrer = await fetchReferrerProfile(referrer_username)
 
+  const JAMBLE_API_URL = process.env.JAMBLE_API_URL;
+
   return (
-    <BuyerInvite countryCode={countryCode} referrerId={referrer.id} />
+    <BuyerInvite countryCode={countryCode} referrerId={referrer.id} JAMBLE_API_URL={JAMBLE_API_URL}/>
   );
 }
 
